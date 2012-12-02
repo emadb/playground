@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" manifest="site.manifest">
+    <head>
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <div>
+            Sorry, you are offline.
+        </div>
+    </body>
+</html>
