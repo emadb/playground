@@ -15,6 +15,10 @@ Person = Backbone.Model.extend({
                 var name = model.get('name'); 
                 console.log("Changed my name to " + name );
             });
+        },
+        print: function(){
+            console.log('print', this.get('name'));
+            this.set('name', 'cambio nome');
         }
 
     });
@@ -45,19 +49,25 @@ var AppRouter = Backbone.Router.extend({
     Backbone.history.start();
 
 SearchView = Backbone.View.extend({
-        initialize: function(model){
-            this.render();
-        },
-        render: function(){
-            var template = _.template( $("#search_template").html(), {search: 'ricerca'} );
-            this.$el.html( template );
-        },
-        events: {
-            "click input[type=button]": "doSearch"
-        },
-        doSearch: function( event ){
-            console.log( "Search for " + $("#search_input").val() );
-        }
-    });
+    initialize: function(){
+        this.render();
+        this.model.on('change', this.logChange, this);
+    },
+    render: function(){
+        var template = _.template( $("#search_template").html(), {search: 'ricerca'} );
+        this.$el.html( template );
+    },
+    events: {
+        "click input[type=button]": "doSearch"
+    },
+    doSearch: function( event ){
+        this.model.print();
+        app_router.navigate('do2/7');
+    },
+    logChange: function(){
+        console.log('something has changed',this.model.get('name'));
+
+    }
+});
 
 var search_view = new SearchView({ model: person, el: $("#search_container") });

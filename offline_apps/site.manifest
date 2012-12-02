@@ -1,0 +1,8 @@
+CACHE MANIFEST  
+# version 0.1  
+index.html  
+page2.html
+script.js
+image1.jpg
+FALLBACK:
+/ /offline.html 
