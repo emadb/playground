@@ -1,4 +1,3 @@
-
 // MODEL
 Socio = Backbone.Model.extend({
      defaults: function() {
@@ -63,6 +62,15 @@ SocioView = Backbone.View.extend({
 
 var search_view = new MainView({el: $('#container'), collection: new SocioCollection()});
 search_view.initialize();
+=======
+MyApp = {
+    init: function (){
+        console.log('all is up and running');
+    }
+}
+
+// MODEL
+
 Person = Backbone.Model.extend({
         defaults: {
             name: 'defautl_name'
