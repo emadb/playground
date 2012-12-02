@@ -1,0 +1,7 @@
+D:\Dev\playground\CSharpLambdas\CSharpLambdas\bin\Debug\CSharpLambdas.dll
+D:\Dev\playground\CSharpLambdas\CSharpLambdas\bin\Debug\CSharpLambdas.pdb
+D:\Dev\playground\CSharpLambdas\CSharpLambdas\obj\Debug\CSharpLambdas.csprojResolveAssemblyReference.cache
+D:\Dev\playground\CSharpLambdas\CSharpLambdas\obj\Debug\CSharpLambdas.dll
+D:\Dev\playground\CSharpLambdas\CSharpLambdas\obj\Debug\CSharpLambdas.pdb
+D:\Dev\playground\CSharpLambdas\CSharpLambdas\bin\Debug\nunit.framework.dll
+D:\Dev\playground\CSharpLambdas\CSharpLambdas\bin\Debug\nunit.framework.xml
