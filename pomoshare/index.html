@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Pomoshare</title>
+    <meta name="description" content="">
+    <meta name="author" content="Emanuele DelBono - Codiceplastico">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+      }
+    </style>
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/img/apple-touch-icon-114x114.png">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">Pomoshare</a>
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+      <p>
+        <h1 id="timer">25:00</h1>
+       
+        <p><a class="btn success large" id="start">Star a pomodoro &raquo;</a></p>
+
+      </div>
+
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="span4">
+          <h2>Team</h2>
+          <div>
+          <input type="text" id="user" />
+          <a class="btn large" id="connect">Connect &raquo;</a></div>
+          <div id="users">
+          <ul>
+          </ul>
+          </div>
+                    
+        </div>
+        <div class="span4">
+          <h2>Chat</h2>
+           <span><input type="text" id="textTalk" /><input type="button" value=">" id="talk"/></span>
+           <fieldset>
+                <legend>Chat</legend>
+            <ul id="chat">
+
+            </ul>
+           </fieldset>
+
+           <a class="btn" href="#">View details &raquo;</a>
+       </div>
+        <div class="span4">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
+      </div>
+
+      <footer>
+        <p>&copy; Codice/Plastico 2012</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/assets/js/client-app.js"></script>
+  </body>
+</html>
