@@ -1,0 +1,74 @@
+<!doctype html>
+<head>
+  <title>node</title>
+  <!-- [META TAGS] -->
+  <meta charset="utf-8" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body class="lang_en">
+  node!
+  <input type="text" id="newTaskDescription" />
+  <a href='#' id="newTask">send</a>
+  <ul id="tasks">
+  </ul>
+  
+  <br /> 
+  <div id="timer">25:00</div>
+
+<script>
+  $(function() {
+    var socket = io.connect('http://localhost');
+    var pomodoro = 1500;
+    var pomodoroId;
+    $('#newTask').click(function (e){
+      e.preventDefault();
+      socket.emit('new_task', { task: $('#newTaskDescription').val()});
+    });
+
+    socket.on('new_task_callback', function (task){
+      $('#tasks').append('<li>' + task.description + '</li><a href="#" id="start_' + task.id + '" class="startButton">start</a><a href="#" id="cancel_' + task.id + '" class="cancelButton">stop</a>');
+    });
+
+    $('.startButton').live('click',function (e) {
+      e.preventDefault();
+      pomodoroId = setInterval(countdown, 1000);
+      var taskId = $(this).attr('id')
+      taskId = taskId.substring(6, taskId.length);
+      socket.emit('start_pomodoro', { task: taskId });
+    });
+
+    function countdown(){
+      pomodoro--;
+      if (pomodoro === 0){
+        clearTimer(pomodoroId);
+        pomodoro = 1500;
+      }
+      var time = toTime(pomodoro);
+     
+      $('#timer').html(time.m + ':' + time.s);
+    }
+
+    function toTime(secs)
+    {
+      var hours = Math.floor(secs / (60 * 60));  
+      var divisor_for_minutes = secs % (60 * 60);
+      var minutes = Math.floor(divisor_for_minutes / 60);
+      var divisor_for_seconds = divisor_for_minutes % 60;
+      var seconds = Math.ceil(divisor_for_seconds);
+   
+      var obj = {
+          "h": hours,
+          "m": minutes.toString().length > 1 ? minutes : '0' + minutes,
+          "s": seconds.toString().length > 1 ? seconds : '0' + seconds,
+      };
+      
+      return obj;
+    }
+
+  })
+  
+</script>
+
+
+</body>
