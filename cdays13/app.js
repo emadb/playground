@@ -1,7 +1,7 @@
 var express = require('express')
   , routes = require('./routes')
   , http = require('http')
-  , about = require('./routes/about')
+  , drum = require('./routes/drum')
   , path = require('path');
 
 var app = express();
@@ -24,11 +24,8 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-console.log(routes.about);
-app.get('/about', about.about);
-// app.get('/about', function(req, res){
-//   res.render('about', {title: 'about'});
-// });
+
+app.get('/drum', drum.showDrum);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
