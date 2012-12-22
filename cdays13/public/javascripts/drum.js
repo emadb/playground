@@ -1,9 +1,15 @@
 $(function(){
-    window.context = new webkitAudioContext()
+    var context = new webkitAudioContext()
+    var socket = io.connect('http://localhost:3000');
     
+    socket.on('played', function (data) {
+        playSound(data.sound);
+    });
+
     $(document).on('click', '.drum', function(){
         var sound = $(this).data('sound');
         playSound(sound);
+        socket.emit('play', { sound: sound });
     });
 
     function playSound(sound){
