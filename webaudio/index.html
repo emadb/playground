@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>ema's playground</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    </head>
+    <body>
+        <button id="play">play</button>
+
+        
+    </body>
+<script type="text/javascript">
+
+
+$(function(){
+    var context = new webkitAudioContext();
+    
+    $(document).on('click', '#play', function(){
+        var osc1 = context.createOscillator();
+        var osc2 = context.createOscillator();
+        var compressor = context.createDynamicsCompressor();
+        var filter = context.createBiquadFilter();
+
+        filter.type = 2;
+        filter.frequency = 500;
+        filter.detune = 80;
+
+        compressor.threshold = -100;
+        compressor.knee = 0;
+        compressor.ratio = 20;
+        compressor.release = 1;
+
+        osc1.type = 0;
+        osc2.type = 2;
+
+        osc1.connect(filter);
+        filter.connect(compressor);
+        //osc2.connect(compressor);
+        compressor.connect(context.destination);        
+        osc1.noteOn(0);
+        //osc2.noteOn(0);
+
+        for (var i = 1000 - 1; i >= 0; i--) {
+             osc1.frequency = osc1.frequency+100;
+        };
+        
+        setTimeout(function(){
+            osc1.noteOff(0);
+            //osc2.noteOff(0);
+        }, 3000);
+    });
+});
+</script>
+
+</html>
