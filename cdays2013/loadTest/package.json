@@ -1,3 +1,4 @@
+<<<<<<< HEAD:cdays2013/loadTest/package.json
 {
   "name": "application-name",
   "version": "0.0.1",
@@ -11,4 +12,19 @@
     "mongoose": "*",
     "nodeload": "*"
   }
+=======
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "3.0.4",
+    "jade": "*",
+    "mongoose": "*",
+    "nodeload": "*"
+  }
+>>>>>>> demos in nodes:cdays2013/loadTest/package.json
 }
