@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="span2">
+        <h3>Contacts</h3>
+        <ul data-bind="{foreach: contacts}">
+            <li>
+                <a href="#" data-bind="text:name"></a>
+            </li>                
+        </ul>
+    </div>
+    <div class="span4">due</div>
+    <script type="text/javascript">
+
+    function ContactList(contacts){
+        var self = this;
+        this.contacts = ko.observableArray(contacts);
+        this.addNew = function(){}
+        this.currentContact = ko.observable(contacts[0]);
+    }
+
+    function ContactDetails(name, email, phoneNumber){
+        var self = this;
+        this.name = ko.observable(name);
+        this.email = ko.observable(email);
+        this.phoneNumber = ko.observable(phoneNumber);
+    }
+
+    var contacts = new ContactList([{name: 'uno'},{name: 'due'}]);
+    ko.applyBindings(contacts);
+
+    </script>
+</div>
+
