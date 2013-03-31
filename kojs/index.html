@@ -5,7 +5,13 @@
         <script src="libs/knockout-2.2.1.js"></script>
     </head>
     <body>
+        <input type="text" data-bind="value: username, valueUpdate: 'afterkeydown'" />
+        <input type="button" data-bind="click: add" />
+        <div data-bind="text: username"></div>
 
+        <ul data-bind="foreach: items">
+            <li data-bind="text: itemText" />
+        </ul>
         
         <script src="app.js"></script>
     </body>
