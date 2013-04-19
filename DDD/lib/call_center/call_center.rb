@@ -1,4 +1,4 @@
-Dir["./lib/*.rb"].each {|file| require file }
+Dir["./lib/**/*.rb"].each {|file| require file }
 
 class CallCenter
   def self.new_session
