@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/custom.css">
+        <script src="libs/jquery-2.0.0.js"></script>
+        <script src="libs/bootstrap.js"></script>
+        <script src="libs/knockout-2.2.1.js"></script>
+    </head>
+    <body>
+    <div id="root" class="container">
+        <input type="text" data-bind="value: username, valueUpdate: 'afterkeydown'" />
+        <button class="btn btn-large" data-bind="click: save,enable: canSave">
+            Save
+        </button>
+      
+    </div>
+        
+    </body>
+    <script type="text/javascript">
+        function ViewModel() {
+            var self = this;
+            self.username = ko.observable('');
+            self.canSave = ko.observable(false);
+            self.save = function(){
+                alert('saving...');
+            }
+            
+            self.username.subscribe(function(newValue) {
+                if (newValue.length > 0)
+                    self.canSave(true);
+                else
+                    self.canSave(false);
+            });
+        };
+        ko.applyBindings(new ViewModel());
+    </script>
+</html>
