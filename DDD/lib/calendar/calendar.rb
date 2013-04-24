@@ -17,4 +17,3 @@ class Calendar
     @event_store << {company_id: company_id, date: date, duration: duration}
   end
 end
-
