@@ -9,10 +9,22 @@
     </head>
     <body>
     <div id="root" class="container">
-        <input type="text" data-bind="value: username, valueUpdate: 'afterkeydown'" />
-        <button class="btn btn-large" data-bind="click: save,enable: canSave">
-            Save
-        </button>
+        
+        <form class="form-search">
+          <fieldset>
+            <legend>Observing the observable</legend>
+            <label>Type something: </label>
+            <input type="text" data-bind="value: username, valueUpdate: 'afterkeydown'" />
+            <button class="btn btn-primary" data-bind="click: save, enable: canSave">
+                Save
+            </button>
+          </fieldset>
+        </form>
+        
+        
+        
+        
+        
       
     </div>
         
