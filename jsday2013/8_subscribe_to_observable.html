@@ -8,27 +8,20 @@
         <script src="libs/knockout-2.2.1.js"></script>
     </head>
     <body>
-    <div id="root" class="container">
-        
-        <form class="form-search">
-          <fieldset>
-            <legend>Observing the observable</legend>
-            <label>Type something: </label>
-            <input type="text" data-bind="value: username, valueUpdate: 'afterkeydown'" />
-            <button class="btn btn-primary" data-bind="click: save, enable: canSave">
-                Save
-            </button>
-          </fieldset>
-        </form>
-        
-        
-        
-        
-        
-      
-    </div>
-        
+        <div id="root" class="container">
+            <form class="form-search">
+                <fieldset>
+                    <legend>Observing the observable</legend>
+                    <label>Type something: </label>
+                    <input type="text" data-bind="value: username, valueUpdate: 'afterkeydown'" />
+                    <button class="btn btn-primary" data-bind="click: save, enable: canSave">
+                        Save
+                    </button>
+                </fieldset>
+            </form>
+        </div>
     </body>
+    
     <script type="text/javascript">
         function ViewModel() {
             var self = this;

@@ -8,18 +8,18 @@
         <script src="libs/knockout-2.2.1.js"></script>
     </head>
     <body>
-    <div id="root" class="container">
-        <ul data-bind="template: { name: 'character-template', foreach: characters }">
-        </ul>
-      
-    </div>
+        <div id="root" class="container">
+            <ul data-bind="template: { name: 'character-template', foreach: characters }">
+            </ul>
+            
+        </div>
         
-    <script type="text/html" id="character-template">
+        <script type="text/html" id="character-template">
         <li>
             <strong data-bind="text:name"></strong>
             <span data-bind="text: surname"></span>
         </li>    
-    </script>
+        </script>
         
     </body>
     <script type="text/javascript">
@@ -29,10 +29,10 @@
         };
         
         var vm = new MonkeyIsland([
-                {name: 'Guybrush', surname: 'Threepwood'},
-                {name: 'Elaine', surname: 'Marley'},
-                {name: 'Pirate', surname: 'LeChuck'}
-            ]);
+            {name: 'Guybrush', surname: 'Threepwood'},
+            {name: 'Elaine', surname: 'Marley'},
+            {name: 'Pirate', surname: 'LeChuck'}
+        ]);
         
         ko.applyBindings(vm);
     </script>
