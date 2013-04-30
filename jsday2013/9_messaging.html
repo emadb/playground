@@ -51,7 +51,7 @@
             var self = this;
             self.items = ko.observableArray(items);
             self.select = function(current){
-                postbox.notifySubscribers(current, 'itemSelected');
+                postbox.notifySubscribers({current}, 'itemSelected');
             }
         }
         
