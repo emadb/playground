@@ -71,7 +71,7 @@
             self.name = ko.observable(name);
             self.surname = ko.observable(surname);
             self.save = function(){
-                console.log('saving item...');
+                // Should save and notify...
             }
             
             postbox.subscribe(function(item) {
