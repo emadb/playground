@@ -5,7 +5,7 @@ mongo_client = MongoClient.new("localhost", 27017)
 db = mongo_client.db("sunfinder")
 coll = db.collection("cities")
 
-File.open("IT.txt").each do |line|
+File.open("../allCountries.txt").each do |line|
   columns = line.split("\t");
   city_name = columns[1]
   lat = columns[4]

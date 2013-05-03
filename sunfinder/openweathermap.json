@@ -1,0 +1,15 @@
+{
+	"coord":{"lon":139,"lat":35},
+	"sys":{"country":"JP","sunrise":1367524236,"sunset":1367573464},
+	"weather":[
+		{"id":800,"main":"Clear","description":"Sky is Clear","icon":"01n"}
+	],
+	"base":"global stations",
+	"main":{"temp":286.92,"humidity":48,"pressure":1008,"temp_min":282.04,"temp_max":289.82},
+	"wind":{"speed":2.57,"gust":4.11,"deg":249},
+	"clouds":{"all":0},
+	"dt":1367574528,
+	"id":1851632,
+	"name":"Shuzenji",
+	"cod":200
+}
