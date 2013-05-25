@@ -1,6 +1,5 @@
 # 2 contesti: carrello e magazzino
 # CARRELLO
-# - calcola totale
 # - applica coupon sconto
 # - scegli tipo spedizione
 # - gestione dei bundle (se hai comprato A e compri B ottieni uno sconto)
@@ -11,6 +10,7 @@
 #   - genera ordine
 #
 require './lib/basket/basket'
+require './lib/basket/article'
 
 describe Basket do
   before do
@@ -21,18 +21,21 @@ describe Basket do
 
   it 'should be possible to add a new item and count should raise' do
     @basket.add_item(@item_one)
+
     expect(@basket.item_count).to eq(1)
   end
 
   it 'does not change size if I add the same item twice' do
     @basket.add_item(@item_one)
     @basket.add_item(@item_one)
+
     expect(@basket.item_count).to eq(1)
   end
 
   it 'should increase quantity if I add the same item twice' do
     @basket.add_item(@item_one)
     @basket.add_item(@item_one)
+
     expect(@basket.items[0].quantity).to eq(2)
   end
 
@@ -40,6 +43,7 @@ describe Basket do
   it 'should decrease quantity if I remove an item that is in the basket' do
     @basket.add_item(@item_one)
     @basket.remove_item(@item_one)
+
     expect(@basket.items[0].quantity).to eq(0)
   end
 
@@ -47,6 +51,7 @@ describe Basket do
     @basket.add_item(@item_one)
     @basket.add_item(@item_one)
     @basket.remove_item(@item_one)
+
     expect(@basket.items[0].quantity).to eq(1)
   end
 
@@ -54,19 +59,32 @@ describe Basket do
     @basket.add_item(@item_one)
     @basket.add_item(@item_two)
     @basket.empty
+
     expect(@basket.item_count).to eq(0)
   end
 
   it 'with one item should return the total items price' do
     @basket.add_item(@item_one)
+
     expect(@basket.total_price).to eq(5.00)
   end
 
   it 'with two items should return the total items price' do
     @basket.add_item(@item_one)
     @basket.add_item(@item_two)
+
     expect(@basket.total_price).to eq(15.00)
   end
+
+  it 'with three items should return the total items price' do
+    @basket.add_item(@item_one)
+    @basket.add_item(@item_one)
+    @basket.add_item(@item_two)
+
+    expect(@basket.total_price).to eq(20.00)
+  end
+
+
 end
 
 

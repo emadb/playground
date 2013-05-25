@@ -34,8 +34,8 @@ class Basket
   end
 
   def total_price
-    @items.inject(0) do |sum,x| 
-      sum + x.item_price 
+    @items.inject(0) do |sum, item|
+      sum + item.total_price 
     end
   end
 
@@ -43,13 +43,5 @@ class Basket
   def get_item (item)
     selected_items = @items.select{|i| i.item == item}
     selected_items[0] if selected_items.size == 1
-  end
-end
-
-class Article
-  attr_reader :id, :price
-  def initialize (id, price)
-    @id = id
-    @price = price
   end
 end

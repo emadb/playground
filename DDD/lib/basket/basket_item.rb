@@ -1,5 +1,5 @@
 class BasketItem
-  attr_accessor :item, :quantity
+  attr_reader :item, :quantity
   
   def initialize (item)
     @item = item
@@ -20,5 +20,9 @@ class BasketItem
 
   def item_id
     @item.id
+  end
+
+  def total_price
+    item_price * quantity
   end
 end
