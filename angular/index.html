@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="libs/angular.js"></script>
+    </head>
+    <body ng-app>
+         <div ng-controller="MainController">
+
+    <form class="search-field">
+      <input type="text" ng-model="searchKeyword">
+      <input type="submit" value="Find">
+      <span class="search-message"><span class="search-message">photos of {{searchKeyword}}</span></span>
+    </form>
+
+    <div class="size-controls btn-group">
+      <button>Small</button>
+      <button>Large</button>
+    </div>
+
+    <ul class="results-list small-thumbs" ng-repeat="photo in photos">
+     	<img ng-src="{{photo.thumbUrl}}"/>
+    	<p class="title">{{photo.title}}</p>
+    </ul>
+
+  </div>
+ 
+        <script src="app.js"></script>
+    </body>
+</html>
