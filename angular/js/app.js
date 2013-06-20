@@ -4,7 +4,7 @@ var myApp = angular.module('TestAngular', ['ngResource']);
 
 myApp.config(function ($routeProvider) {
 	$routeProvider
-	.when('/', {
+	.when('/Main', {
 		controller: 'MainController',
 		templateUrl: '/main.html'
 	})
@@ -70,7 +70,7 @@ myApp.factory('Contacts', function($resource) {
 
 
 
-myApp.controller('MainController', ['$scope'], function($scope){});
+myApp.controller('MainController', ['$scope', function($scope){}]);
 
 myApp.controller('ContactsController', ['$scope', '$http', 'Contacts', function ($scope, $http, Contacts) {
    
