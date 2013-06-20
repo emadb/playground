@@ -1,0 +1,53 @@
+<div ng-controller="ContactsController" class="row-fluid">
+    <div class="span4">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Phone</td>
+                </tr>
+            </thead>
+            <tbody ng-repeat="item in contacts">
+                <tr>
+                    <td><a href="#" ng-click="$parent.showDetails(item, $event)">{{item.name}}</a></td>
+                    <td>{{item.phone}} ({{item.phoneType | getTypeDescription}})</td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" class="btn" ng-click="createNew()">New</button>
+    </div>
+    <div class="span6">
+        <div></div>
+
+        <form class="form-horizontal">
+            <div class="control-group">
+                <label class="control-label" for="name">Name</label>
+                <div class="controls">
+                    <input type="text" id="name" placeholder="Name" ng-model="currentItem.name">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="phone">Phone</label>
+                <div class="controls">
+                    <input type="text" id="phone" placeholder="Phone" ng-model="currentItem.phone"> 
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="type">Phone type</label>
+                <div class="controls">
+                    <select id="type" ng-model="currentItem.PhoneType" ng-options="p.type for p in phoneTypes"> 
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn" ng-click="save(currentItem)">Save</button>
+                </div>
+            </div>
+            
+            
+        </form>
+
+
+    </div>
+</div>

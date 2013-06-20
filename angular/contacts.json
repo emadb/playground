@@ -1,0 +1,6 @@
+[
+	{"id":1, "name": "ema", "phone": "2382644369", "phoneType": 1},
+	{"id":2, "name": "ale", "phone": "12345678", "phoneType": 2},
+	{"id":3, "name": "vale", "phone": "098876544", "phoneType": 2},
+	{"id":4, "name": "ste", "phone": "000000000", "phoneType": 3},
+	{"id":5, "name": "fede", "phone": "121111111", "phoneType": 4}]
