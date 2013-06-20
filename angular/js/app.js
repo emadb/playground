@@ -88,14 +88,14 @@ myApp.controller('ContactsController', ['$scope', '$http', 'Contacts', function 
     };
 
     $scope.createNew = function() {
-        var item = new Contact({ });
+        var item = new Contacts({id:0, name:'foo', phone:'000', phoneType:0 });
         $scope.contacts.push(item);
         $scope.currentItem = item;
     };
 
     $scope.save = function(item) {
-        item.$save();
-        console.log('save!');
+        //item.$save();
+        console.log('save!', item);
     };
 
 }]);
