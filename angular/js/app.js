@@ -46,11 +46,14 @@ myApp.directive("testd", function(){
 });
 
 myApp.directive("enter", function(){
-	return function(scope, element, attrs){
-		element.bind("mouseenter", function(){
-			console.log(attrs);
-			scope.$apply(attrs.enter);
-		});
+	return {
+        restrict: "A",
+        link: function(scope, element, attrs){
+    		element.bind("mouseenter", function(){
+    			console.log(attrs);
+    			scope.$apply(attrs.enter);
+    		});
+        }
 	}
 });
 
@@ -70,7 +73,9 @@ myApp.factory('Contacts', function($resource) {
 
 
 
-myApp.controller('MainController', ['$scope', function($scope){}]);
+myApp.controller('MainController', ['$scope', '$timeout', function($scope, $timeout){
+    $scope.message = "yo!";
+}]);
 
 myApp.controller('ContactsController', ['$scope', '$http', 'Contacts', function ($scope, $http, Contacts) {
    
