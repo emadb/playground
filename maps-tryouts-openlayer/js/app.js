@@ -1,37 +1,28 @@
-var map = L.map('map', {
-    center: [45.33, 10.0],
-    zoom: 10
-});
+ var map = new OpenLayers.Map('map');
+        
+var wms = new OpenLayers.Layer.WMS( "OpenLayers WMS","http://vmap0.tiles.osgeo.org/wms/vmap0", {layers: 'basic'} );
+map.addLayer(wms);
+map.zoomToMaxExtent();
 
-var startingPoint = [45.33, 10.0];
+console.log('completed');
 
-map.on('click', function(evt){
-    var latlngs = [startingPoint];
-    latlngs.push(evt.latlng);
-    L.polyline(latlngs, {color: 'red'}).addTo(map);    
-    startingPoint = evt.latlng;
-});
-
-L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: 'yo',
-    maxZoom: 18
-    
-}).addTo(map);
-
-L.marker([45.33, 10.0]).addTo(map);
-
-L.polygon([[45.33, 10.0], [46.33, 10.0], [46.33, 11.0]], {color: '#00FF00'}).addTo(map);
 /*
-var map = L.map('map').setView([45.33, 10.0], 5);
-
-var brescia = L.marker([45.33, 10.0]).bindPopup('Bresa');
-var cities = L.layerGroup([brescia]);
-
-L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: 'yo',
-    maxZoom: 18
-    
-}).addTo(map);
+var dm_wms = new OpenLayers.Layer.WMS( "Canadian Data", "http://www2.dmsolutions.ca/cgi-bin/mswms_gmap",
+    {
+        layers: "bathymetry,land_fn,park,drain_fn,drainage," +
+                "prov_bound,fedlimit,rail,road,popplace",
+        transparent: "true",
+        format: "image/png"
+    },
+    {isBaseLayer: false}
+);
+map.addLayer(dm_wms);
 */
 
-
+var vectorLayer = new OpenLayers.Layer.Vector("Overlay");
+var feature = new OpenLayers.Feature.Vector(
+    new OpenLayers.Geometry.Point(-71, 42),
+    {some:'data'},
+    {externalGraphic: 'img/marker.png', graphicHeight: 21, graphicWidth: 16});
+vectorLayer.addFeatures(feature);
+map.addLayer(vectorLayer);
