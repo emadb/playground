@@ -1,0 +1,22 @@
+<div class="row-fluid">
+<input type="text" id="searchText" name="searchText" ng-model="searchText" /> 
+</div>
+
+<div class="row-fluid">
+    <table ng-table="tableParams" class="table">
+        <tr ng-repeat="user in users | filter:searchText">
+            <td title="Name" sortable="name">
+                {{user.name}}
+            </td>
+            <td title="Age" sortable="age">
+                {{user.age}}
+            </td>
+            <td title="Email" sortable="email">
+                {{user.email}}
+            </td>
+            <td title="BirthDate" sortable="birthDate">
+                {{user.birthDate}}
+            </td>
+        </tr>
+    </table>
+</div>

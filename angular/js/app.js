@@ -1,8 +1,8 @@
 "use strict";
-
-var myApp = angular.module('TestAngular', ['ngResource']);
+var myApp = angular.module('TestAngular', ['ngResource', 'ngTable']);
 
 myApp.config(function ($routeProvider) {
+
 	$routeProvider
 	.when('/Main', {
 		controller: 'MainController',
@@ -11,6 +11,10 @@ myApp.config(function ($routeProvider) {
 	.when('/Contacts', {
           controller: 'ContactsController',
           templateUrl: "/contacts.html"
+    })
+    .when('/DataTables', {
+          controller: 'NgTableController',
+          templateUrl: "/ngTable.html"
     })
 	.otherwise({
 		redirectTo: '/'
@@ -68,8 +72,15 @@ myApp.directive("leave", function(){
 
 
 myApp.factory('Contacts', function($resource) {
-	return $resource('contacts.json', {});	
-});
+	return $resource('contacts.json', {});
+    
+    // , 
+    //     {
+    //         query: {
+    //             headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'} 
+    //         }
+    //     });	
+    });
 
 
 
@@ -78,7 +89,8 @@ myApp.controller('MainController', ['$scope', '$timeout', function($scope, $time
 }]);
 
 myApp.controller('ContactsController', ['$scope', '$http', 'Contacts', function ($scope, $http, Contacts) {
-   
+    $http.defaults.headers.common['xx-user-token'] = '123456789abcdef';
+
     $scope.phoneTypes = globalPhoneTypes;
     
     $scope.contacts = [];
