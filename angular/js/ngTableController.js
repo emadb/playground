@@ -2,6 +2,10 @@ myApp.controller('NgTableController', ['$scope', '$http', '$filter', 'ngTablePar
     
     $scope.searchText = "";
 
+    $scope.showDetails = function(){
+        console.log('hello from click');
+    }
+
     var users = $http.get('data.json').success(function(users){
         $scope.users = users;
 
@@ -20,9 +24,6 @@ myApp.controller('NgTableController', ['$scope', '$http', '$filter', 'ngTablePar
         
         // use build-in angular filter
         var filteredData = params.filter ? $filter('filter')(users, filter) : users;
-
-        // set total for recalc pagination
-        
 
         // slice array data on pages
         $scope.users = filteredData.slice(
