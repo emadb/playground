@@ -11,8 +11,28 @@ myApp.controller('NgTableController', ['$scope', '$http', '$filter', 'ngTablePar
             count: 10,          // count per page
             sorting: {
                 name: 'asc'     // initial sorting
-            }
+            },
+            filter: {}
         });
+
+    $scope.$watch('searchText', function(filter){
+        var params = $scope.tableParams;
+        
+        // use build-in angular filter
+        var filteredData = params.filter ? $filter('filter')(users, filter) : users;
+
+        // set total for recalc pagination
+        
+
+        // slice array data on pages
+        $scope.users = filteredData.slice(
+            (params.page - 1) * params.count,
+            params.page * params.count
+        );
+
+        //params.total = filteredData.length;
+    
+    }, true);
 
     $scope.$watch('tableParams', function(params) {
         // use build-in angular filter

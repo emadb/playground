@@ -4,7 +4,7 @@
 
 <div class="row-fluid">
     <table ng-table="tableParams" class="table">
-        <tr ng-repeat="user in users | filter:searchText">
+        <tr ng-repeat="user in users">
             <td title="Name" sortable="name">
                 {{user.name}}
             </td>
