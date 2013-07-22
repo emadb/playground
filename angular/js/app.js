@@ -12,6 +12,10 @@ myApp.config(function ($routeProvider) {
           controller: 'ContactsController',
           templateUrl: "/contacts.html"
     })
+    .when('/Todos', {
+          controller: 'TodosController',
+          templateUrl: "/todos.html"
+    })
     .when('/DataTables', {
           controller: 'NgTableController',
           templateUrl: "/ngTable.html"
