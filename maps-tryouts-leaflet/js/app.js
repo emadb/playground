@@ -1,5 +1,4 @@
 $(function(){
-
     var map = L.map('map', {
         dragging: true,
         center: [45.33, 10.0],
@@ -27,11 +26,14 @@ $(function(){
         
     }).addTo(map);
 
+
     // var marker = L.marker([45, 10.0])
     // marker.addTo(map);
     // marker.dragging.enable();
     // marker.on('dragend', function(something){
     //     console.log('dragend', marker);
+
+    L.marker([45.33, 10.0]).addTo(map);
 
     // });
 
@@ -41,6 +43,7 @@ $(function(){
     // GEO JSON
     console.log('loading data...');
     $.get('comuni.json', function(data){
+
         $.each(data.features, function(index, item){
             if (item.properties.COD_PRO == 17) {
                 var color = "#ff0000";
@@ -56,6 +59,13 @@ $(function(){
             }
         })
         
+        //var brescia = _.where(data.features, {"properties.COD_PRO": 17});
+        //console.log(brescia);
+        //L.geoJson(data, { style: function(feature){
+        //    console.log(feature);
+        //    return {color: "#ff0000"};
+        //} }).addTo(map);    
+
         console.log('design complete');
     });
 
