@@ -20,6 +20,10 @@ myApp.config(function ($routeProvider) {
           controller: 'NgTableController',
           templateUrl: "/ngTable.html"
     })
+	.when('/Modals', {
+          controller: 'ModalsController',
+          templateUrl: "/modals.html"
+    })
 	.otherwise({
 		redirectTo: '/'
 	}); 

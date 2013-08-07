@@ -1,45 +1,52 @@
 <!DOCTYPE html>
 <html>
-    <head>
+	<head>
 		<link href="css/bootstrap.css" rel="stylesheet" />
-        <link href="css/ng-table.css" rel="stylesheet" />
-    	<script src="libs/jquery-1.10.1.js"></script>
-    	<script src="libs/bootstrap.js"></script>
+		<link href="css/ng-table.css" rel="stylesheet" />
+		<script src="libs/jquery-1.10.1.js"></script>
+		<script src="libs/bootstrap.js"></script>
 		<script src="libs/underscore.js"></script>
-    	<script src="libs/angular.js"></script>
-        <script src="libs/ng-table.src.js"></script>
-        <script src="libs/angular-resource.js"></script>
+		<script src="libs/angular.js"></script>
+		<script src="libs/ng-table.src.js"></script>
+		<script src="libs/angular-resource.js"></script>
 		<style>
-		body{
-			margin-top: 60px;
-		}
+			body{
+				margin-top: 60px;
+			}
 		</style>
-    </head>
-    
-    
-    <body ng-app="TestAngular">
-     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-                <a class="brand" href="#">Yoox</a>
-                <div class="nav-collapse collapse">
-                    <ul class="nav">
-                        <li class="divider-vertical"></li>
+	</head>
+	
+	
+	<body ng-app="TestAngular">
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Project name</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav navbar-nav">
 						<li><a href="#/Main">Main</a></li>
-                        <li><a href="#/Contacts">Contacts</a></li>
-                        <li><a href="#/Todos">Todos</a></li>
-                        <li><a href="#/DataTables">DataTables</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid" ng-view>
-        
-    </div>   
-    
-    <script src="js/app.js"></script>
-    <script src="js/ngTableController.js"></script>
-    <script src="js/todos.js"></script>
-    </body>
+						<li><a href="#/Contacts">Contacts</a></li>
+						<li><a href="#/Todos">Todos</a></li>
+						<li><a href="#/DataTables">DataTables</a></li>
+						<li><a href="#/Modals">Modals</a></li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="container" ng-view>
+			
+		</div>   
+		
+		<script src="js/app.js"></script>
+		<script src="js/ngTableController.js"></script>
+		<script src="js/todos.js"></script>
+		<script src="js/ModalsController.js"></script>
+	</body>
 </html>
