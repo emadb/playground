@@ -4,10 +4,13 @@
 </div>
 
   <!-- Button trigger modal -->
-  <button id="opener" class="btn btn-primary btn-lg" modal-show="myModal">Launch demo modal</button>
+  <button id="opener" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-lg" ng-click="openModal()">Launch demo modal</button>
+  <div>
+    {{username}}
+  </div>
 
   <!-- Modal -->
-  <div class="modal fade" id="myModal">
+  <div class="modal fade" id="myModal" ng-controller="MyModalController">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -15,11 +18,20 @@
           <h4 class="modal-title">Modal title</h4>
         </div>
         <div class="modal-body">
-			{{sonoUnTitolo}}
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label for="username" class="col-lg-2 control-label">Username</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" id="username" ng-model="username">
+              </div>
+            </div>
+          </form>
+
+
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="save()">Save changes</button>
         </div>
       </div>
     </div>
