@@ -1,1 +1,1 @@
-gem list | cut -d" " -f1 | xargs gem uninstall -aIx
+for i in `gem list --no-versions`; do gem uninstall -aIx $i; done
