@@ -2,14 +2,14 @@
 
 def run
   s1, s2 = STDIN.gets.split ' '
-
+  offset = 0
   s1.each_char do |c|
-    index = s2.index(c)
+    index = s2.index(c, offset)
     if (index.nil?)
       puts 'unsublime'
       return
     else
-      s2 = s2[index+1..-1]
+      offset = index + 1
     end
   end
   puts 'sublime'
