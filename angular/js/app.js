@@ -24,6 +24,10 @@ myApp.config(function ($routeProvider) {
           controller: 'ModalsController',
           templateUrl: "/modals.html"
     })
+	.when('/Directives', {
+          controller: 'DirectivesController',
+          templateUrl: "/directives.html"
+    })
 	.otherwise({
 		redirectTo: '/'
 	}); 
