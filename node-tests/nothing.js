@@ -52,7 +52,9 @@ function FALSE(x){
 }
 
 function IF(b){
-    return b;
+    return function(x){
+        return b(x)
+    }
 }
 // n => { n(x => {return FALSE()})(TRUE)}
 // IS_ZERO = -> n { n[-> x { FALSE }][TRUE] }
