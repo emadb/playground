@@ -1,0 +1,14 @@
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+.toolbar{
+  background-color: #DDDDDD;
+}
+.toolbar ul li {
+  margin-bottom: 20px;
+}
+.toolbar ul li img{
+  cursor: move;
+}
