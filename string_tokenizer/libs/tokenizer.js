@@ -5,10 +5,19 @@ module.exports = (function() {
     };
 
     Tokenizer.prototype.parse = function(str) {
-        var p1 = str.split('|');
-        var p2 = p1[1].split('_');
-        var result = {T: p1[0], S1: p2[0], S2: p2[1]};
-        return [result];
+        var parts = str.split(/[_~|]+/);
+        var results = [];
+        
+        if (parts.length > 3){
+	        for(var i=0;i<parts.length-2;i+=3){
+	        	var e = {T: parts[i], S1: parts[i+1], S2: parts[i+2]};
+	        	results.push(e);
+	    	}
+    	}
+		var t = {T: '', S1: parts[parts.length-2], S2: parts[parts.length-1]};
+        results.push(t);
+		
+        return results;
     };
 
     return Tokenizer;
