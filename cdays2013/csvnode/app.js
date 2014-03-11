@@ -19,7 +19,7 @@ mongo.connect("mongodb://localhost:27017/cdays13", function(err, db) {
                 city: data[4],
                 province: data[5]
             };
-
+            console.log(data[1]);
             biblio.insert(obj, {w:0});
         }
     })
