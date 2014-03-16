@@ -3,18 +3,29 @@ window.app = angular.module('filtersApp', []);
 window.app.controller('FilterController', ['$scope', '$http', function ($scope, $http) {
     $scope.fields = ['uno', 'due', 'tre'];
     $scope.currentField = 'due';
+    $scope.submit = function(){
+        console.log('controller submit');
+    }
 }]);
 
 window.app.directive('filters',['$http', function($http) {
 
     function applyWatcher(scope, data, index){
         scope.$watch(['filters[', index, '].selectedField'].join(''), function(newValue, oldValue) {
-            console.log('change', newValue);
+            
             var selected = _.find(data, function(item){
                 return item.name === newValue;
-            });        
+            });
             if (selected !== undefined) {
-                scope.values = selected.values;      
+                if (angular.isArray(selected.values)){
+                    scope.filters[index].values = selected.values;
+                }
+                else{
+                    $http.get(selected.values).then(function(values){
+                        scope.filters[index].values = values.data;
+                    });
+                    
+                }
             }
         });
     }
@@ -22,32 +33,57 @@ window.app.directive('filters',['$http', function($http) {
     function bindFields(scope, data, index){
         scope.filters[index].fields = _.map( data, function(item){
             return item.name;
-        }); 
+        });
+    }
+
+    function getFilterElement(){
+        return {
+            selectedField:'', 
+            selectedOperator:'', 
+            selectedValue:'',
+            operators : ['=', '!=', '>', '<'],
+            fields: [],
+            values: []
+        };
     }
 
     return {
         restrict: 'E',
         templateUrl: 'filterTemplate.html',
-        
+        scope: {
+            submitFn: "&"
+        },
         link: function(scope, elem, attrs) {
             var data;
-            scope.filters = [
-                {selectedField:'', selectedOperator:'', selectedValue:''}
-                ];
-            scope.operators = ['=', '!=', 'empty'];
-            scope.selectedField = '';
-
-            applyWatcher(scope, data, 0);
+            var submitFn = attrs['submitFn'];
+            var filterMetadata = attrs['metaData'];
+            scope.filters = [getFilterElement()];
 
             scope.newLine = function(){
-                scope.filters.push({selectedField:'', selectedOperator:'', selectedValue:''});
+                scope.filters.push(getFilterElement());
                 applyWatcher(scope, data, scope.filters.length - 1);
                 bindFields(scope, data, scope.filters.length - 1);
             };
 
-            $http.get('/js/filterMetadata.js').then(function(meta){
+            scope.removeLine = function(index){
+                scope.filters.splice(index, 1);
+            };
+
+            scope.applyFilter = function(){
+                scope.submitFn();
+            };
+
+            scope.saveFilter = function(){
+                var filters = _.map(scope.filters, function(filter){
+                    return {field: filter.selectedField, operator: filter.selectedOperator, value: filter.selectedValue};
+                });
+                console.log('saveFilter', filters);
+            };
+
+            $http.get(filterMetadata).then(function(meta){
                 data = meta.data;
                 bindFields(scope, data, 0);
+                applyWatcher(scope, data, 0);
             });
         }
     };

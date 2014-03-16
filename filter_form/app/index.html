@@ -19,7 +19,7 @@
     <body ng-app="filtersApp">
         <div class="container" ng-controller="FilterController">
             <div class="row">
-               <filters></filters>
+               <filters submit-fn="submit()" meta-data="/js/filterMetadata.js" ></filters>
             </div>
         </div>
         <!-- build:js js/app.min.js -->

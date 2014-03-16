@@ -2,7 +2,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -65,21 +64,6 @@ module.exports = function(grunt) {
         assetsDirs: ['js', 'css']
       }
     },
-    connect: {
-      prod: {
-        options: {
-          keepalive: true,
-          port: 3000,
-          base: 'build'
-        }
-      },
-      dev: {
-        options: {
-          port: 3000,
-          base: 'app'
-        }
-      }
-    },
     jshint: {
       all: ['app/js/app.js']
     },
@@ -135,7 +119,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', ['jshint', 'sass:dev', 'express:dev', 'connect:dev', 'watch']);
+  grunt.registerTask('default', ['jshint', 'sass:dev', 'express:dev', 'watch']);
   grunt.registerTask('prod', ['clean', 'jshint', 'sass:prod', 'concat', 'uglify:prod', 'cssmin', 'copy:tmp', 'useminPrepare', 'usemin', 'copy:prod']);
 
 };

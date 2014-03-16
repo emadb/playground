@@ -1,19 +1,26 @@
-<div ng-repeat="filter in filters">
-    <div class="form-group col-sm-12">
-        <div class="col-sm-2">
-            <select class="form-control" id="fields" data-ng-model="filter.selectedField" data-ng-options="f for f in filter.fields">
-            </select>
-        </div>
-        <div class="col-sm-2">
-            <select class="form-control" id="operators" data-ng-model="filter.selectedOperator" data-ng-options="o for o in operators">
-            </select>
-        </div>
-        <div class="col-sm-2">
-            <select class="form-control" id="values" data-ng-model="filter.selectedValue" data-ng-options="o for o in values">
-            </select>
-        </div>
-        <div class="col-sm-2">
-            <button class="btn btn-default" data-ng-click="newLine()"><i class="glyphicon glyphicon-plus"></i></button>
-        </div>
-    </div>
+<div>
+    <ul>
+        <li ng-repeat="filter in filters">
+            <div class="form-group col-sm-12">
+                <div class="col-sm-2">
+                    <select class="form-control" id="fields" data-ng-model="filter.selectedField" data-ng-options="f for f in filter.fields">
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-control" id="operators" data-ng-model="filter.selectedOperator" data-ng-options="o for o in filter.operators">
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <select class="form-control" id="values" data-ng-model="filter.selectedValue" data-ng-options="o for o in filter.values">
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <button class="btn btn-default" data-ng-click="newLine()"><i class="glyphicon glyphicon-plus"></i></button>
+                    <button class="btn btn-warning" data-ng-show="$index > 0" data-ng-click="removeLine($index)"><i class="glyphicon glyphicon-minus"></i></button>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <button class="btn btn-primary" ng-click="applyFilter()">Submit</button>
+    <button class="btn btn-warning" ng-click="saveFilter()">Save filter</button>
 </div>
