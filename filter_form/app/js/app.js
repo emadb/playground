@@ -3,9 +3,9 @@ window.app = angular.module('filtersApp', []);
 window.app.controller('FilterController', ['$scope', '$http', function ($scope, $http) {
     $scope.fields = ['uno', 'due', 'tre'];
     $scope.currentField = 'due';
-    $scope.submit = function(){
-        console.log('controller submit');
-    }
+    $scope.submit = function(filters){
+        console.log('controller submit', filters);
+    };
 }]);
 
 window.app.directive('filters',['$http', function($http) {
@@ -55,8 +55,8 @@ window.app.directive('filters',['$http', function($http) {
         },
         link: function(scope, elem, attrs) {
             var data;
-            var submitFn = attrs['submitFn'];
-            var filterMetadata = attrs['metaData'];
+            var submitFn = attrs.submitFn;
+            var filterMetadata = attrs.metaData;
             scope.filters = [getFilterElement()];
 
             scope.newLine = function(){
@@ -70,7 +70,10 @@ window.app.directive('filters',['$http', function($http) {
             };
 
             scope.applyFilter = function(){
-                scope.submitFn();
+                var filters = _.map(scope.filters, function(filter){
+                    return {field: filter.selectedField, operator: filter.selectedOperator, value: filter.selectedValue};
+                });
+                scope.submitFn({filters: filters});
             };
 
             scope.saveFilter = function(){
