@@ -32,7 +32,8 @@ window.app.directive('filters',['$http', function($http) {
 
     function bindFields(scope, data, index){
         scope.filters[index].fields = _.map( data, function(item){
-            return item.name;
+            console.log(item);
+            return {label: item.label, type: item.type};
         });
     }
 
@@ -81,6 +82,11 @@ window.app.directive('filters',['$http', function($http) {
                     return {field: filter.selectedField, operator: filter.selectedOperator, value: filter.selectedValue};
                 });
                 console.log('saveFilter', filters);
+            };
+
+            scope.hasOptions = function(filter) {
+                console.log(filter.values, filter.values !== undefined);
+                return filter.values !== undefined;
             };
 
             $http.get(filterMetadata).then(function(meta){

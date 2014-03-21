@@ -3,7 +3,7 @@
         <li ng-repeat="filter in filters">
             <div class="form-group col-sm-12">
                 <div class="col-sm-2">
-                    <select class="form-control" id="fields" data-ng-model="filter.selectedField" data-ng-options="f for f in filter.fields">
+                    <select class="form-control" id="fields" data-ng-model="filter.selectedField" data-ng-options="f.label as f.label for f in filter.fields">
                     </select>
                 </div>
                 <div class="col-sm-2">
@@ -11,8 +11,9 @@
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select class="form-control" id="values" data-ng-model="filter.selectedValue" data-ng-options="o for o in filter.values">
+                    <select ng-show="hasOptions(filter)" class="form-control" id="values" data-ng-model="filter.selectedValue" data-ng-options="o for o in filter.values">
                     </select>
+                    <input ng-show="!hasOptions(filter)" type="text" id="value" data-ng-model="filter.selectedValue" />
                 </div>
                 <div class="col-sm-2">
                     <button class="btn btn-default" data-ng-click="newLine()"><i class="glyphicon glyphicon-plus"></i></button>
