@@ -1,0 +1,20 @@
+{
+  "name": "jevenstore",
+  "version": "0.0.0",
+  "description": "An eventstore implementation in javascritp",
+  "main": "lib/app.js",
+  "scripts": {
+    "start": "node app",
+    "test": "mocha --reporter spec"
+  },
+  "author": "Emanuele DelBono @emadb",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "~1.18.2",
+    "should": "~3.2.0-beta1",
+    "sinon": "~1.9.0",
+    "gulp": "~3.5.6",
+    "gulp-mocha": "~0.4.1",
+    "gulp-jshint": "~1.5.1"
+  }
+}
