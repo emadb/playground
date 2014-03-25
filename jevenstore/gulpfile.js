@@ -4,14 +4,14 @@ var mocha = require('gulp-mocha');
 
 
 gulp.task('jshint', function(){
-    gulp.src('./app/*.js')
+    gulp.src('./lib/*.js')
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
         .pipe(jshint.reporter('fail'));
 });
 
 gulp.task('test', function() {
-   gulp.src('./test/*.js')
+   gulp.src('./spec/*.js')
         .pipe(mocha({reporter: 'dot'}));
 });
 

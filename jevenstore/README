@@ -1,0 +1,6 @@
+===A simple implementation of an event store in node.js
+
+=== TODO
+- Divide persistence from uncommitted event list
+- Add interceptors on AddEvent and pre-post persistence (could be helpful to enrich the event in on the addevent for example)
+
