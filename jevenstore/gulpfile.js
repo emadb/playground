@@ -10,10 +10,10 @@ gulp.task('jshint', function(){
         .pipe(jshint.reporter('fail'));
 });
 
-gulp.task('test', function() {
+gulp.task('spec', function() {
    gulp.src('./spec/*.js')
         .pipe(mocha({reporter: 'dot'}));
 });
 
-gulp.task('default', ['jshint', 'test'], function() {
+gulp.task('default', ['jshint', 'spec'], function() {
 });
