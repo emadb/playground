@@ -94,7 +94,7 @@ window.app.directive('filters',['$http', function($http) {
             };
 
             scope.hasOptions = function(selectedField, index) {
-                var field = _.find(scope.filters[index].fields, function(field){ return field.label === selectedField});
+                var field = _.find(scope.filters[index].fields, function(field){ return field.label === selectedField; });
                 return field !== undefined && field.type === 'options';
             };
 
