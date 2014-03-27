@@ -11,9 +11,9 @@
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select ng-show="hasOptions(filter)" class="form-control" id="values" data-ng-model="filter.selectedValue" data-ng-options="o for o in filter.values">
+                    <select ng-show="hasOptions(filter.selectedField, $index)" class="form-control" id="values" data-ng-model="filter.selectedValue" data-ng-options="o for o in filter.values">
                     </select>
-                    <input ng-show="!hasOptions(filter)" type="text" id="value" data-ng-model="filter.selectedValue" />
+                    <input ng-show="!hasOptions(filter.selectedField, $index)" class="form-control" type="text" id="value" data-ng-model="filter.selectedValue" />
                 </div>
                 <div class="col-sm-2">
                     <button class="btn btn-default" data-ng-click="newLine()"><i class="glyphicon glyphicon-plus"></i></button>

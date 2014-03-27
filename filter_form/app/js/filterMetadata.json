@@ -1,0 +1,8 @@
+[
+    { "label": "Nome", "field":"Name", "values": ["uno", "due", "tre"], "type": "options" },
+    { "label": "Sicronizzato", "values": ["si", "no"], "type": "options" },
+    { "label": "Pippo", "values": "/tipoDocumento/ValoriPippo", "type":"remote-options" },
+    { "label": "Date", "values": "", "type": "date" },
+    { "label": "Numero", "field": "Number", "values": [1, 2, 10, 40], "type": "options" },
+    { "label": "Text", "field": "Number", "type": "text" }
+]

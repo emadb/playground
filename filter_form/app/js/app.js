@@ -14,17 +14,22 @@ window.app.directive('filters',['$http', function($http) {
         scope.$watch(['filters[', index, '].selectedField'].join(''), function(newValue, oldValue) {
             
             var selected = _.find(data, function(item){
-                return item.name === newValue;
+                return item.label === newValue;
             });
+    
             if (selected !== undefined) {
-                if (angular.isArray(selected.values)){
-                    scope.filters[index].values = selected.values;
-                }
-                else{
-                    $http.get(selected.values).then(function(values){
-                        scope.filters[index].values = values.data;
-                    });
-                    
+                switch(selected.type){
+                    case 'options':
+                        scope.filters[index].values = selected.values;
+                        break;
+                    case 'remote-options':
+                        $http.get(selected.values).then(function(values){
+                            scope.filters[index].values = values.data;
+                        });
+                        break;
+                    case 'text':
+                        break;
+
                 }
             }
         });
@@ -32,8 +37,8 @@ window.app.directive('filters',['$http', function($http) {
 
     function bindFields(scope, data, index){
         scope.filters[index].fields = _.map( data, function(item){
-            console.log(item);
-            return {label: item.label, type: item.type};
+            console.log('bindFields', data, item.values);
+            return {label: item.label, type: item.type, value: item.values};
         });
     }
 
@@ -84,9 +89,10 @@ window.app.directive('filters',['$http', function($http) {
                 console.log('saveFilter', filters);
             };
 
-            scope.hasOptions = function(filter) {
-                console.log(filter.values, filter.values !== undefined);
-                return filter.values !== undefined;
+            scope.hasOptions = function(selectedField, index) {
+                var field = _.find(scope.filters[index].fields, function(field){ return field.label === selectedField});
+                console.log('hasOptions', field);
+                return field !== undefined && field.type === 'options';
             };
 
             $http.get(filterMetadata).then(function(meta){
