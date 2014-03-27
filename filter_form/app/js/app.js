@@ -9,6 +9,9 @@ window.app.controller('FilterController', ['$scope', '$http', function ($scope, 
 }]);
 
 window.app.directive('filters',['$http', function($http) {
+    
+    var optionsOperators = ['equal', 'not equal', 'greater than', 'less than'];
+    var textOperators = ['equal', 'not equal', 'empty', 'not empty'];
 
     function applyWatcher(scope, data, index){
         scope.$watch(['filters[', index, '].selectedField'].join(''), function(newValue, oldValue) {
@@ -21,15 +24,17 @@ window.app.directive('filters',['$http', function($http) {
                 switch(selected.type){
                     case 'options':
                         scope.filters[index].values = selected.values;
+                        scope.filters[index].operators = optionsOperators;
                         break;
                     case 'remote-options':
                         $http.get(selected.values).then(function(values){
                             scope.filters[index].values = values.data;
                         });
+                        scope.filters[index].operators = optionsOperators;
                         break;
                     case 'text':
+                    scope.filters[index].operators = textOperators;
                         break;
-
                 }
             }
         });
@@ -37,7 +42,6 @@ window.app.directive('filters',['$http', function($http) {
 
     function bindFields(scope, data, index){
         scope.filters[index].fields = _.map( data, function(item){
-            console.log('bindFields', data, item.values);
             return {label: item.label, type: item.type, value: item.values};
         });
     }
@@ -47,7 +51,7 @@ window.app.directive('filters',['$http', function($http) {
             selectedField:'', 
             selectedOperator:'', 
             selectedValue:'',
-            operators : ['=', '!=', '>', '<'],
+            operators : [],
             fields: [],
             values: []
         };
@@ -91,7 +95,6 @@ window.app.directive('filters',['$http', function($http) {
 
             scope.hasOptions = function(selectedField, index) {
                 var field = _.find(scope.filters[index].fields, function(field){ return field.label === selectedField});
-                console.log('hasOptions', field);
                 return field !== undefined && field.type === 'options';
             };
 
