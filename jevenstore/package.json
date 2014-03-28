@@ -18,6 +18,7 @@
     "gulp-jshint": "~1.5.1"
   },
   "dependencies": {
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "arraystream": "0.0.5"
   }
 }

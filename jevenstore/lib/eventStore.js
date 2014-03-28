@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 module.exports = (function() {
   var EventStore = function(driver) {
     this.driver = driver;
@@ -5,9 +7,10 @@ module.exports = (function() {
   };
 
   EventStore.prototype.collectEvent = function(stream){
-
+    var self = this;
     stream.pipe(function(evt){
-      this.events.push({name: evt.name});
+      console.log('pipe', evt);
+      self.events.push({name: evt.name});
     });
 
 
