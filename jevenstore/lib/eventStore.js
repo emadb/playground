@@ -16,8 +16,8 @@ module.exports = (function() {
 
   };
 
-  EventStore.prototype.commit = function(){
-    this.driver.commit({id:1, events: this.events});
+  EventStore.prototype.commit = function(args){
+    this.driver.insert({id:1, events: this.events});
   };
   
   return EventStore;
