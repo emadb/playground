@@ -8,10 +8,33 @@ window.app.controller('FilterController', ['$scope', '$http', function ($scope, 
     };
 }]);
 
+/*
+
+    { $and: [
+        { qty: { $gt: 100 } },
+        { price: { $lt: 9.95 } }
+        ]
+    }
+
+    db.TipologieDocumento.find({Nome: "TestVale4dicembre_bis", _id: "4"})
+    db.TipologieDocumento.find({Nome: {$ne: "TestVale4dicembre_bis"}})
+
+*/
+
+
 window.app.directive('filters',['$http', function($http) {
+
+    var eq = {label: 'equal', operator: 'eq'};
+    var ne = {label: 'not equal', operator: '$ne'};
+    var gt = {label: 'greater than', operator: '$gt'};
+    var lt = {label: 'less than', operator: '$lt'};
+    var empty = {label: 'empty', operator: 'null'};
+    var nempty = {label: 'not empty', operator: 'nnull'};
+    var contains = {label: 'contains', operator: 'contains'};
+    var ncontains = {label: 'not contains', operator: 'ncontains'};
     
-    var optionsOperators = ['equal', 'not equal', 'greater than', 'less than'];
-    var textOperators = ['equal', 'not equal', 'empty', 'not empty'];
+    var optionsOperators = [eq, ne];
+    var textOperators = [eq, ne];
 
     function applyWatcher(scope, data, index){
         scope.$watch(['filters[', index, '].selectedField'].join(''), function(newValue, oldValue) {
@@ -57,6 +80,16 @@ window.app.directive('filters',['$http', function($http) {
         };
     }
 
+    function getMongoQuery(filter){
+        if (filter.operator === eq.operator){
+            return ['{', filter.field, ':\"', filter.value, '\"}'].join('');
+        }
+
+        if (filter.operator === ne.operator){
+            return ['{', filter.field, ': {$ne: \"', filter.value, '\"}}'].join('');
+        }
+    }
+
     return {
         restrict: 'E',
         templateUrl: 'filterTemplate.html',
@@ -83,7 +116,14 @@ window.app.directive('filters',['$http', function($http) {
                 var filters = _.map(scope.filters, function(filter){
                     return {field: filter.selectedField, operator: filter.selectedOperator, value: filter.selectedValue};
                 });
-                scope.submitFn({filters: filters});
+
+                var query = '{ $and: [';
+                _.forEach(filters, function(filter){
+                    var q = getMongoQuery(filter);
+                    query = query + q + ',';
+                 });
+                query = query.slice(0, -1) + ']}';
+                scope.submitFn({query: query});
             };
 
             scope.saveFilter = function(){

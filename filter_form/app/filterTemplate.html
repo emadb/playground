@@ -7,7 +7,11 @@
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select class="form-control" id="operators" data-ng-model="filter.selectedOperator" data-ng-options="o for o in filter.operators">
+                    <select class="form-control" id="operators" data-ng-model="filter.selectedOperator" 
+
+                    data-ng-options="o.operator as o.label for o in filter.operators"
+
+                    >
                     </select>
                 </div>
                 <div class="col-sm-2">
