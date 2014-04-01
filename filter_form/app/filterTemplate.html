@@ -3,7 +3,7 @@
         <li ng-repeat="filter in filters">
             <div class="form-group col-sm-12">
                 <div class="col-sm-2">
-                    <select class="form-control" id="fields" data-ng-model="filter.selectedField" data-ng-options="f.label as f.label for f in filter.fields">
+                    <select class="form-control" id="fields" data-ng-model="filter.selectedField" data-ng-options="f.field as f.label for f in filter.fields">
                     </select>
                 </div>
                 <div class="col-sm-2">
