@@ -17,7 +17,7 @@ var img = paper.image("/img/uno.jpg", 0, 0, 1181, 953);
 img.attr({ "clip-rect": "0, 0, " + WIDTH + ", " + HEIGHT + " ,30" });
 
 img.click(function(evt){
-  console.log('click', evt, panZoom, panZoom.getCurrentPosition(), panZoom.getCurrentZoom());
+  console.log('click', evt);
   var box = this.getBBox();
   var currPaperPosition = panZoom.getCurrentPosition();
   var currPaperZoom = panZoom.getCurrentZoom();
