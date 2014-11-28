@@ -1,10 +1,7 @@
 var converter = new Showdown.converter();
 
 var CommentBox = React.createClass({
-  getInitialState: function() {
-    return {data: []};
-  },
-  componentDidMount: function() {
+  loadCommentsFromServer: function() {
     $.ajax({
       url: this.props.url,
       dataType: 'json',
@@ -16,12 +13,24 @@ var CommentBox = React.createClass({
       }.bind(this)
     });
   },
+  getInitialState: function() {
+    return {data: []};
+  },
+  handleCommentSubmit: function(comment) {
+    var comments = this.state.data;
+    var newComments = comments.concat([comment]);
+    this.setState({data: newComments});
+  },
+  componentDidMount: function() {
+    this.loadCommentsFromServer();
+    //setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+  },
   render: function() {
     return (
       <div className="commentBox">
         <h1>Comments</h1>
         <CommentList data={this.state.data} />
-        <CommentForm />
+        <CommentForm onCommentSubmit={this.handleCommentSubmit}/>
       </div>
     );
   }
@@ -59,16 +68,31 @@ var Comment = React.createClass({
 });
 
 var CommentForm = React.createClass({
+  handleSubmit: function(e) {
+    e.preventDefault();
+    var author = this.refs.author.getDOMNode().value.trim();
+    var text = this.refs.text.getDOMNode().value.trim();
+    if (!text || !author) {
+      return;
+    }
+    this.props.onCommentSubmit({author: author, text: text});
+    // TODO: send request to the server
+    this.refs.author.getDOMNode().value = '';
+    this.refs.text.getDOMNode().value = '';
+    return;
+  },
   render: function() {
     return (
-      <div className="commentForm">
-        Hello, world! I am a CommentForm.
-      </div>
+     <form className="commentForm" onSubmit={this.handleSubmit}>
+        <input type="text" placeholder="Your name" ref="author"/>
+        <input type="text" placeholder="Say something..." ref="text"/>
+        <input type="submit" value="Post" />
+      </form>
     );
   }
 });
 
 React.render(  
-  <CommentBox url="/tute/comments.json"/>,
+  <CommentBox url="comments.json" pollInterval={2000}/>,
   document.getElementById('content')
 );
