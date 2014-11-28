@@ -53,13 +53,7 @@ var CommentForm = React.createClass({
   }
 });
 
-var data = [
-  {author: "Pete Hunt", text: "This is one comment1"},
-  {author: "Jordan Walke", text: "This is *another* comment2"}
-];
-
-
 React.render(  
-  <CommentBox data={data}/>,
+  <CommentBox url="comments.json"/>,
   document.getElementById('content')
 );
