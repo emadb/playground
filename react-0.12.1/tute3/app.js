@@ -1,6 +1,9 @@
 var UserPage = React.createClass({
+  getInitialState: function() {
+    return { userName: '--' };
+  },
   handleClick:function(u){
-    console.log('click!', u);
+    this.setState({ userName: u.name });
   },
   render: function() {
     return (
@@ -9,12 +12,14 @@ var UserPage = React.createClass({
           <UserTable data={this.props.data} onHandleClick={this.handleClick} />
         </div>
         <div className="col-md-4">
-          <UserDetail />
+          <UserDetail name={this.state.userName} />
         </div>
       </div>
     );
   }
 });
+
+
 
 var UserTable = React.createClass({
   handleClick: function(u){
@@ -62,7 +67,7 @@ var UserRow = React.createClass({
 var UserDetail = React.createClass({
   render: function(){
     return (
-      <div>Detail</div>
+      <div>Detail: {this.props.name}</div>
     );
   }
 });
@@ -72,6 +77,8 @@ var data = [
   {name: 'ale', role: 'admin'},
   {name: 'alb', role: 'dev'},
   {name: 'madda', role: 'dev'},
+  {name: 'ste', role: 'dev'},
+  {name: 'vale', role: 'dev'},
 
 ];
 
